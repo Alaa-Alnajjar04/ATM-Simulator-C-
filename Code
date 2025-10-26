@@ -1,0 +1,198 @@
+
+
+using System.Numerics;
+
+string x;
+int y;
+int yy;
+int balance = 100;
+int vv = 1;
+
+do
+{
+    Console.WriteLine("Please select the client type:\n ");
+    Console.WriteLine("Press 1 for deposit\n");
+    Console.WriteLine("Press 2 for Withdraw\n");
+    Console.WriteLine("Press 3 for Check Balance\n");
+    Console.WriteLine("Press 4 for Exit");
+
+    x = Console.ReadLine();
+    string b = "#";
+
+    switch (x)
+    {
+        case "1":
+            do
+            {
+                Console.WriteLine("Enter the amount you want to deposit: ");
+                y = int.Parse(Console.ReadLine());
+
+                if (y >= 5 && y % 5 == 0)
+                {
+                    balance += y;
+                    Console.WriteLine($"{y} JOD deposited successfully\nThe account balance: {balance} JOD");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another deposit: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click: *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+                else if (y >= 5 && y % 5 != 0)
+                {
+                    Console.WriteLine("It is not permissible to deposit an amount that is not a multiple of 5 JOD");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another deposit: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+                else if (y < 5)
+                {
+                    Console.WriteLine("It is not permissible to deposit less than 5 JOD");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another deposit: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+            } while (b != "*" && b == "#");
+            if (b == "*")
+            {
+                x = "4";
+                Console.WriteLine("Transaction complete thank you for using our services");
+            }
+            else if (b == "$")
+                continue;
+
+                break;
+
+        case "2":
+            do
+            {
+                Console.WriteLine("Enter the amount you want to withdraw: ");
+                yy = int.Parse(Console.ReadLine());
+                if (yy <= balance && yy != 0 && yy % 5 == 0)
+                {
+                    balance = balance - yy;
+                    Console.WriteLine("The amount was withdrawn: " + yy + " JOD\nThe remaining balance: " + balance + " JOD");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another withdraw: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+                else if (yy <= balance && yy % 5 != 0)
+                {
+                    Console.WriteLine("It is not permissible to withdraw an amount that is not a multiple of 5 JOD");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another withdraw: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+                else
+                {
+                    Console.WriteLine("Your financial balance is not sufficient to withdraw this amount ");
+                    do
+                    {
+                        Console.WriteLine("If you want to make another withdraw: #");
+                        Console.WriteLine("If you want to perform another operation click: $");
+                        Console.WriteLine("If you want to finish the process click *");
+                        b = Console.ReadLine();
+                        if (b != "*" && b != "#" && b != "$")
+                        {
+                            Console.WriteLine("Please try again");
+                            continue;
+                        }
+                        else
+                            break;
+                    } while (vv == 1);
+                }
+            } while (b != "*" && b == "#");
+            if (b == "*")
+            {
+                x = "4";
+                Console.WriteLine("Transaction complete thank you for using our services");
+            }
+            else if (b == "$")
+                continue;
+
+            break;
+
+        case "3":
+            Console.WriteLine($"Your current balance: {balance} JOD");
+            do
+            {
+                Console.WriteLine("If you want to perform another operation click: $");
+                Console.WriteLine("If you want to finish the process click *");
+                b = Console.ReadLine();
+                if (b == "*")
+                {
+                    x = "4";
+                    Console.WriteLine("Transaction complete Thank you for using our services");
+                    return;
+                }
+                else if (b == "$")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Please try again");
+                    continue;
+                }
+            } while (vv == 1);
+            break;
+        case "4":
+            Console.WriteLine("Transaction complete thank you for using our services");
+            break;
+        default:
+            Console.WriteLine("Please try again");
+            break;
+    }
+} while (x != "4");
